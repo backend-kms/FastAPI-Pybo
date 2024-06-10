@@ -1,3 +1,5 @@
+import datetime
+
 from pydantic import BaseModel, field_validator
 
 
@@ -13,3 +15,10 @@ class AnswerCreate(BaseModel):
         if not v or not v.strip():
             raise ValueError("빈 값은 허용되지 않습니다.")
         return v
+
+
+# 질문 상세 조회에 사용할 Answer 스키마, 답변 1건
+class Answer(BaseModel):
+    id: int
+    content: str
+    created: datetime.datetime
