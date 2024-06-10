@@ -15,13 +15,17 @@ class Question(Base):
     created = Column(DateTime, nullable=False)  # 작성일시, 필수
 
 
+# from sqlalchemy.sql import func
+# , server_default=func.now()
+
+
 class Answer(Base):
     __tablename__ = "answer"
 
     id = Column(Integer, primary_key=True)  # 고유 번호
     content = Column(Text, nullable=False)  # 답변 내용
-    create_date = Column(DateTime, nullable=False)  # 작성일시, 필수
-    question_id = Column(Integer, ForeignKey("question.id"))  # 질문의 id
+    created = Column(DateTime, nullable=False)  # 작성일시, 필수
+    question_id = Column(Integer, ForeignKey("question.id"))  # 질문의 idß
     question = relationship(
-        "Question", backref="answer"
+        "Question", backref="answers"
     )  # Answer 모델에서 Question모델을 참조하기 위한 속성 relationship(참조할 속성, 역참조할 속성)
