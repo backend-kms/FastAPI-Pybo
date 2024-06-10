@@ -29,3 +29,12 @@ class Answer(Base):
     question = relationship(
         "Question", backref="answers"
     )  # Answer 모델에서 Question모델을 참조하기 위한 속성 relationship(참조할 속성, 역참조할 속성)
+
+
+class User(Base):
+    __tablename__ = "user"
+
+    id = Column(Integer, primary_key=True)
+    username = Column(String, unique=True, nullable=False)
+    password = Column(String, nullable=False)
+    email = Column(String, unique=True, nullable=False)
