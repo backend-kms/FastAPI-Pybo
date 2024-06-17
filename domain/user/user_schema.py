@@ -30,3 +30,9 @@ class Token(BaseModel):  # 로그인 스키마: 로그인 API의 출력 항목
     access_token: str
     token_type: str
     username: str
+
+
+class User(BaseModel):
+    id: int
+    username: str
+    email: str

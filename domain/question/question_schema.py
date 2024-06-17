@@ -1,9 +1,10 @@
 import datetime
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseModel, field_validator
 
 from domain.answer import answer_schema
+from domain.user import user_schema
 
 
 class Question(BaseModel):
@@ -12,6 +13,7 @@ class Question(BaseModel):
     content: str
     created: datetime.datetime
     answers: List[answer_schema.Answer] = []  # 여기 이름은 모델의 backref와 일치시켜줘야 함
+    user: Optional[user_schema.User]
 
 
 class QuestionCreate(BaseModel):
