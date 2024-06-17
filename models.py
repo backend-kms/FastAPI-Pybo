@@ -13,6 +13,8 @@ class Question(Base):
     title = Column(String, nullable=False)  # 질문 제목, 필수
     content = Column(Text, nullable=False)  # 질문 내용, 필수
     created = Column(DateTime, nullable=False)  # 작성일시, 필수
+    user_id = Column(Integer, ForeignKey("user.id"), nullable=True)
+    user = relationship("User", backref="question_users")
 
 
 # from sqlalchemy.sql import func
@@ -29,6 +31,8 @@ class Answer(Base):
     question = relationship(
         "Question", backref="answers"
     )  # Answer 모델에서 Question모델을 참조하기 위한 속성 relationship(참조할 속성, 역참조할 속성)
+    user_id = Column(Integer, ForeignKey("user.id"), nullable=True)
+    user = relationship("User", backref="answer_users")
 
 
 class User(Base):
