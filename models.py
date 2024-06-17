@@ -15,6 +15,7 @@ class Question(Base):
     created = Column(DateTime, nullable=False)  # 작성일시, 필수
     user_id = Column(Integer, ForeignKey("user.id"), nullable=True)
     user = relationship("User", backref="question_users")
+    updated = Column(DateTime, nullable=True)  # 수정일시
 
 
 # from sqlalchemy.sql import func
@@ -33,6 +34,7 @@ class Answer(Base):
     )  # Answer 모델에서 Question모델을 참조하기 위한 속성 relationship(참조할 속성, 역참조할 속성)
     user_id = Column(Integer, ForeignKey("user.id"), nullable=True)
     user = relationship("User", backref="answer_users")
+    updated = Column(DateTime, nullable=True)  # 수정일시
 
 
 class User(Base):

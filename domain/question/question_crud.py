@@ -31,3 +31,13 @@ def create_question(db: Session, question_create: question_schema.QuestionCreate
     )
     db.add(db_question)
     db.commit()
+
+
+def update_question(
+    db: Session, db_question: Question, question_update: question_schema.QuestionUpdate
+):
+    db_question.title = question_update.title
+    db_question.content = question_update.content
+    db_question.updated = datetime.datetime.now()
+    db.add(db_question)
+    db.commit()
