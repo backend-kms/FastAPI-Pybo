@@ -28,3 +28,8 @@ def get_existing_user(db: Session, user_create: user_schema.UserCreate):
         .filter((User.username == user_create.username) | (User.email == user_create.email))
         .first()
     )
+
+
+# 로그인 라우터에서 username으로 User 데이터를 가져와서 비밀번호를 비교를 위한 함수
+def get_user(db: Session, username: str):
+    return db.query(User).filter(User.username == username).first()
